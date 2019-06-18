@@ -6,4 +6,17 @@
 //  Copyright © 2019 Daniel Pape. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+import Combine
+
+class TaskStore : BindableObject {
+    var tasks: [Task] {
+        didSet { didChange.send(()) }
+    }
+    
+    init (tasks: [Task] = []) {
+        self.tasks = tasks
+    }
+    
+    var didChange = PassthroughSubject<Void, Never>()
+}
