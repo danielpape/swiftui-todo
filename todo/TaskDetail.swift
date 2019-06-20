@@ -10,11 +10,18 @@ import SwiftUI
 
 struct TaskDetail : View {
     let task:Task
-    @State private var zoomed = false
+    @State var text: String = ""
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
-            .navigationBarTitle(Text(task.name))
+        VStack {
+            TextField($text,
+                      placeholder: Text("Type in a task")).textFieldStyle(.roundedBorder)
+            Button(action: {
+                print(self.$text)
+            }) {
+                Text("SEND")
+            }
+        }.navigationBarTitle(Text("Add a task"))
     }
 }
 

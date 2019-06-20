@@ -19,6 +19,7 @@
 		298FB2F222B683250069F34B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FB2F122B683250069F34B /* Task.swift */; };
 		29E9E9DC22B95C0300FC2CB1 /* TaskDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E9E9DB22B95C0300FC2CB1 /* TaskDetail.swift */; };
 		29E9E9DE22B9610C00FC2CB1 /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E9E9DD22B9610C00FC2CB1 /* TaskStore.swift */; };
+		29E9EA1E22BC2FDE00FC2CB1 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E9EA1D22BC2FDE00FC2CB1 /* AddTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		298FB2F122B683250069F34B /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		29E9E9DB22B95C0300FC2CB1 /* TaskDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetail.swift; sourceTree = "<group>"; };
 		29E9E9DD22B9610C00FC2CB1 /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
+		29E9EA1D22BC2FDE00FC2CB1 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				298FB2F122B683250069F34B /* Task.swift */,
 				29E9E9DB22B95C0300FC2CB1 /* TaskDetail.swift */,
 				29E9E9DD22B9610C00FC2CB1 /* TaskStore.swift */,
+				29E9EA1D22BC2FDE00FC2CB1 /* AddTaskView.swift */,
 			);
 			path = todo;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				298FB2BF22B17BF10069F34B /* AppDelegate.swift in Sources */,
 				29E9E9DC22B95C0300FC2CB1 /* TaskDetail.swift in Sources */,
 				298FB2C122B17BF10069F34B /* SceneDelegate.swift in Sources */,
+				29E9EA1E22BC2FDE00FC2CB1 /* AddTaskView.swift in Sources */,
 				298FB2F222B683250069F34B /* Task.swift in Sources */,
 				298FB2C622B17BF10069F34B /* ContentView.swift in Sources */,
 				298FB2C422B17BF10069F34B /* todo.xcdatamodeld in Sources */,

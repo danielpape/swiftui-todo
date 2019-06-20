@@ -15,23 +15,21 @@ struct ContentView : View {
         NavigationView {
             List {
                 Section {
-                    Button(action: addTask){
-                        Text("Add Task")
-                    }
-                }
-                
-                Section {
                     ForEach(store.tasks) { task in
                         TaskCell(task: task)
                         }
                         .onDelete(perform: delete)
                         .onMove(perform: move)
                     }
+                Section {
+                    NavigationButton(destination: AddTaskView()){
+                        Text("Add Task")
+                    }
                 }
-                .navigationBarTitle(Text("Tasks"))
-                .navigationBarItems(trailing: EditButton())
-                .listStyle(.grouped)
+                }
             }
+            .navigationBarTitle(Text("Tasks"))
+            .listStyle(.grouped)
         }
     
     func addTask() {
@@ -44,6 +42,10 @@ struct ContentView : View {
     
     func move(from source: IndexSet, to destination: Int) {
         source.sorted { $0 > $1 }.forEach { store.tasks.insert(store.tasks.remove(at: $0), at: destination) }
+    }
+    
+    func tapCell(id:Int){
+        print("tap cell")
     }
 }
 
@@ -59,16 +61,9 @@ struct TaskCell : View {
     let task: Task
     
     var body: some View {
-        return NavigationButton(destination:TaskDetail(task:task)){
-            if task.complete{
-                Image(systemName: "checkmark")
-            }
+        return
             VStack(alignment: .leading) {
                 Text(task.name)
-                Text("\(task.subtasks) subtasks")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
         }
     }
 }
