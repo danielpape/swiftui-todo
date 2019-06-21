@@ -21,10 +21,21 @@ struct AddTaskView : View {
                             .color(.gray)
                     }
                 }
+                Section {
+                    Button(
+                        action: AddTask,
+                        label: { Text("Add Task") }
+                    )
+                }
             }
             .listStyle(.grouped)
         }
     }
+    
+    func AddTask() {
+
+    }
+    
 }
 
 #if DEBUG

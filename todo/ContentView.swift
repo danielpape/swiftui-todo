@@ -10,30 +10,55 @@ import SwiftUI
 
 struct ContentView : View {
     @ObjectBinding var store = TaskStore()
+    @State var isPresented = false
+    @State var taskTitle: String = ""
+
+    
+    var modalPresentation: some View {
+        NavigationView {
+            List {
+                Section(header: Text("Task Details")){
+                TextField($taskTitle, placeholder: Text("Enter your task title"))
+                NavigationButton(destination: AddTagView()){
+                Text("Add Tag")
+                .color(.gray)
+                }
+                }
+                Section {
+                    Button(
+                        action: {
+                            self.isPresented = false
+                            self.addTask()
+                    },
+                        label: { Text("Add Task") }
+                    )
+                }
+            }
+            .listStyle(.grouped)
+                .navigationBarTitle(Text("Add Task"))
+        }
+    }
     
     var body: some View {
         NavigationView {
-            List {
-                Section {
+            List{
+                Section{
                     ForEach(store.tasks) { task in
                         TaskCell(task: task)
                         }
                         .onDelete(perform: delete)
                         .onMove(perform: move)
-                    }
-                Section {
-                    NavigationButton(destination: AddTaskView()){
-                        Text("Add Task")
-                    }
+
                 }
-                }
+                }.listStyle(.grouped)
+                .navigationBarTitle(Text("Tasks"))
+                .navigationBarItems(trailing:
+                    Button(action: { self.isPresented = true }) { Text("Add Task") })
             }
-            .listStyle(.grouped)
-            .navigationBarTitle(Text("Tasks"))
-        }
-    
+            .presentation( isPresented ? Modal(modalPresentation, onDismiss: { self.isPresented.toggle() }) : nil )
+    }
     func addTask() {
-        store.tasks.append(Task(name: "Code App", subtasks: 5, complete: false))
+        store.tasks.append(Task(name: "Added Task", subtasks: 5, complete: false))
     }
     
     func delete(at offsets: IndexSet) {

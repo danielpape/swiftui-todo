@@ -12,8 +12,10 @@ struct AddTagView : View {
     var body: some View {
         NavigationView{
             List {
-                Section{
-                    Text("Tag 1")
+                Section(header:Text("Pick a category for your task")){
+                    Button(action:ReturnToPreviousView){
+                        Text("Tag 1")
+                    }
                     Text("Tag 2")
                     Text("Tag 3")
                     Text("Tag 4")
@@ -23,6 +25,10 @@ struct AddTagView : View {
                 }
             }
         }.navigationBarTitle(Text("Tags"))
+    }
+    
+    func ReturnToPreviousView() {
+        
     }
 }
 
