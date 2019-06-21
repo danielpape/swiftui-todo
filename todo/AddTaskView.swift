@@ -9,8 +9,21 @@
 import SwiftUI
 
 struct AddTaskView : View {
+    @State var taskTitle: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                Section(header: Text("Task Details")){
+                    TextField($taskTitle, placeholder: Text("Enter your task title"))
+                    NavigationButton(destination: AddTagView()){
+                        Text("Add Tag")
+                            .color(.gray)
+                    }
+                }
+            }
+            .listStyle(.grouped)
+        }
     }
 }
 

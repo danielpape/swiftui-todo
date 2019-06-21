@@ -28,8 +28,8 @@ struct ContentView : View {
                 }
                 }
             }
-            .navigationBarTitle(Text("Tasks"))
             .listStyle(.grouped)
+            .navigationBarTitle(Text("Tasks"))
         }
     
     func addTask() {
@@ -44,7 +44,7 @@ struct ContentView : View {
         source.sorted { $0 > $1 }.forEach { store.tasks.insert(store.tasks.remove(at: $0), at: destination) }
     }
     
-    func tapCell(id:Int){
+    func tapCell(){
         print("tap cell")
     }
 }
@@ -62,8 +62,8 @@ struct TaskCell : View {
     
     var body: some View {
         return
-            VStack(alignment: .leading) {
-                Text(task.name)
+                VStack(alignment: .leading) {
+                    Text(task.name)
         }
     }
 }
