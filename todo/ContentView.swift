@@ -12,17 +12,21 @@ struct ContentView : View {
     @ObjectBinding var store = TaskStore()
     @State var isPresented = false
     @State var taskTitle: String = ""
-
+    @State var taskTag = 0
+    
+    var tags = ["Personal","Professional"]
+    
     
     var modalPresentation: some View {
         NavigationView {
-            List {
+            Form {
                 Section(header: Text("Task Details")){
-                TextField($taskTitle, placeholder: Text("Enter your task title"))
-                NavigationButton(destination: AddTagView()){
-                Text("Add Tag")
-                .color(.gray)
-                }
+                    TextField($taskTitle, placeholder: Text("Enter your task title"))
+                    Picker(selection: $taskTag, label: Text("Tag")) {
+                        ForEach(0 ..< tags.count) {
+                            Text(self.tags[$0]).tag($0)
+                        }
+                    }
                 }
                 Section {
                     Button(
@@ -33,22 +37,36 @@ struct ContentView : View {
                         label: { Text("Add Task") }
                     )
                 }
-            }
-            .listStyle(.grouped)
+                }
+                .listStyle(.grouped)
                 .navigationBarTitle(Text("Add Task"))
+                .navigationBarItems(trailing:
+                    Button(action: { self.isPresented = false }) { Text("Close") })
         }
     }
     
     var body: some View {
         NavigationView {
             List{
-                Section{
+                Section(header: Text("Personal")){
                     ForEach(store.tasks) { task in
-                        TaskCell(task: task)
+                        if(self.taskTag == 0){
+                            TaskCell(task: task)
+                        }
                         }
                         .onDelete(perform: delete)
                         .onMove(perform: move)
-
+                    
+                }
+                Section(header: Text("Work")){
+                    ForEach(store.tasks) { task in
+                        if(self.taskTag == 1){
+                            TaskCell(task: task)
+                        }
+                        }
+                        .onDelete(perform: delete)
+                        .onMove(perform: move)
+                    
                 }
                 }.listStyle(.grouped)
                 .navigationBarTitle(Text("Tasks"))
@@ -58,7 +76,8 @@ struct ContentView : View {
             .presentation( isPresented ? Modal(modalPresentation, onDismiss: { self.isPresented.toggle() }) : nil )
     }
     func addTask() {
-        store.tasks.append(Task(name: "Added Task", subtasks: 5, complete: false))
+        store.tasks.append(Task(name: $taskTitle.value, tag: $taskTag.value, complete: false))
+        $taskTitle.value = ""
     }
     
     func delete(at offsets: IndexSet) {
@@ -87,8 +106,8 @@ struct TaskCell : View {
     
     var body: some View {
         return
-                VStack(alignment: .leading) {
-                    Text(task.name)
+            VStack(alignment: .leading) {
+                Text(task.name)
         }
     }
 }
